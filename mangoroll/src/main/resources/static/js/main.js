@@ -30,13 +30,13 @@ userIcon.addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     const response = await fetch('http://localhost:8080/api/animes');
-    const data = await response.json(); 
-    
+    const data = await response.json();
+
     if (data.length === 0) {
-     
+
       catalogContainer.innerHTML = '<p class="message-error">Nenhum anime cadastrado.</p>';
     } else {
-      
+
       data.forEach(item => {
         insertElement(item);
       });
@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 function insertElement(item) {
-  catalogContainer.innerHTML += 
-  `
+  catalogContainer.innerHTML +=
+    `
      <div class="anime-card">
                 <div class="anime-image">
                     <img src="${item.imagemUrl}" alt="${item.titulo}">
@@ -62,10 +62,15 @@ function insertElement(item) {
                 <div class="anime-info">
                     <h3 class="anime-title">${item.titulo}</h3>
                     <p class="anime-description">"${item.descricao}"</p>
+                    
+                    <span class="anime-episodes">
+                      ${item.episodios} episódios
+                    </span>
                     <span class="anime-rating">
                         Nota: ${item.nota}
                         <img src="/img/star-icon.svg" alt="" width="18px">
                     </span>
+                    
                 </div>
   `
 }
